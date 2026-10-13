@@ -1,5 +1,5 @@
 // =========================================================
-// BHRAMTECHI — Homepage interactions
+// Hive fx studioz — Homepage interactions
 // =========================================================
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -48,5 +48,42 @@ document.addEventListener('DOMContentLoaded', function () {
     form.reset();
     form.classList.remove('was-validated');
   });
+
+});
+
+
+/*Modal popup */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const modalElement = document.getElementById("projectVideoModal");
+    const videoFrame = document.getElementById("projectVideoFrame");
+
+    const videoModal = new bootstrap.Modal(modalElement);
+
+    document.querySelectorAll(".view-project").forEach(function (button) {
+
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const videoUrl = this.dataset.video;
+
+            if (!videoUrl) return;
+
+            // Add autoplay to the selected YouTube video
+            const separator = videoUrl.includes("?") ? "&" : "?";
+
+            videoFrame.src = videoUrl + separator + "autoplay=1";
+
+            videoModal.show();
+        });
+
+    });
+
+    // Stop the video when the modal closes
+    modalElement.addEventListener("hidden.bs.modal", function () {
+        videoFrame.src = "";
+    });
 
 });
