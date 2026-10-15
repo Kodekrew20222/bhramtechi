@@ -1098,12 +1098,174 @@ select:focus-visible {
   align-items: end;
 }
 
+.con-mob{
+    display: flex;
+    justify-content: end;
+  }
+
+/*mobile project grid*/
+
+/* Hide mobile grid on desktop */
+.portfolio-mobile-wrap {
+    display: none;
+}
+
+@media (max-width: 767px) {
+
+    /* Keep desktop honeycomb untouched */
+    .portfolio-desktop-wrap {
+        display: none !important;
+    }
+
+    .portfolio-mobile-wrap {
+        display: block;
+        width: 100%;
+        padding: 10px 0 50px;
+        background: transparent;
+        overflow: hidden;
+    }
+
+    /* Two-column mobile honeycomb */
+    .portfolio-mobile-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 175px);
+        grid-auto-rows: 150px;
+        column-gap: 15px;
+        row-gap: 40px;
+        justify-content: center;
+        align-items: start;
+        padding: 0 0 70px;
+    }
+
+    /* Individual mobile hexagon */
+    .portfolio-mobile-card {
+        position: relative;
+        display: block;
+        width: 180px;
+        height: 150px;
+        background: #fff;
+        clip-path: polygon(
+            25% 0,
+            75% 0,
+            100% 50%,
+            75% 100%,
+            25% 100%,
+            0 50%
+        );
+        overflow: hidden;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Stagger the right column */
+    .portfolio-mobile-card:nth-child(even) {
+        transform: translateY(64px);
+    }
+
+    /* Image inside hexagon */
+    .portfolio-mobile-card img {
+        position: absolute;
+        inset: 2px;
+        width: calc(100% - 4px);
+        height: calc(100% - 4px);
+        object-fit: cover;
+        clip-path: polygon(
+            25% 0,
+            75% 0,
+            100% 50%,
+            75% 100%,
+            25% 100%,
+            0 50%
+        );
+        transition: transform 0.3s ease;
+    }
+
+    /* Mobile tap overlay */
+    .portfolio-mobile-overlay {
+        position: absolute;
+        inset: 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.35);
+        clip-path: polygon(
+            25% 0,
+            75% 0,
+            100% 50%,
+            75% 100%,
+            25% 100%,
+            0 50%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .portfolio-mobile-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 32px;
+        height: 32px;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 20px;
+        line-height: 1;
+    }
+
+    /* Touch interaction */
+    .portfolio-mobile-card:active .portfolio-mobile-overlay,
+    .portfolio-mobile-card:focus-visible .portfolio-mobile-overlay {
+        opacity: 1;
+    }
+
+    .portfolio-mobile-card:active img {
+        transform: scale(1.08);
+    }
+
+    /* Compact heading spacing */
+    #portfolio .row.mb-5 {
+        margin-bottom: 25px !important;
+    }
+
+    #portfolio .text-center.mt-5 {
+        margin-top: 10px !important;
+        padding-bottom: 30px;
+    }
+}
+
+/* Smaller phones */
+@media (max-width: 360px) {
+    .portfolio-mobile-grid {
+        grid-template-columns: repeat(2, 82px);
+        grid-auto-rows: 92px;
+        column-gap: 12px;
+        row-gap: 34px;
+    }
+
+    .portfolio-mobile-card {
+        width: 82px;
+        height: 92px;
+    }
+
+    .portfolio-mobile-card:nth-child(even) {
+        transform: translateY(58px);
+    }
+}
+
+
 /* media query */
 
 @media (max-width: 768px) {
+  .con-mob{
+    display: flex;
+    justify-content: start;
+  }
+
   .mob-cent {
-    text-align: left !important;
-    justify-content: left !important;
+    text-align: center !important;
+    display: flex !important;
+    justify-content: center !important;
   }
 
   .ft-social {

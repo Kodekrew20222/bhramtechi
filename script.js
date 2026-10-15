@@ -87,3 +87,37 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+
+
+/*modal mobile */
+
+document.addEventListener("DOMContentLoaded", function () {
+    const modalElement = document.getElementById("projectVideoModal");
+    const videoFrame = document.getElementById("projectVideoFrame");
+
+    if (!modalElement || !videoFrame || !window.bootstrap) return;
+
+    const videoModal = bootstrap.Modal.getOrCreateInstance(modalElement);
+
+    document.querySelectorAll(
+        ".view-project, .portfolio-mobile-link"
+    ).forEach(function (trigger) {
+
+        trigger.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const videoUrl = this.dataset.video;
+            if (!videoUrl) return;
+
+            const separator = videoUrl.includes("?") ? "&" : "?";
+
+            videoFrame.src = videoUrl + separator + "autoplay=1";
+            videoModal.show();
+        });
+    });
+
+    modalElement.addEventListener("hidden.bs.modal", function () {
+        videoFrame.src = "";
+    });
+});
