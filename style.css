@@ -567,6 +567,11 @@ a {
   min-height: 1.2rem;
 }
 
+.logo_items img{
+  border-radius: 17px;
+  margin: 0 15px;
+} 
+
 /* ================= FOOTER ================= */
 .footer {
   background-color: #08080C;
